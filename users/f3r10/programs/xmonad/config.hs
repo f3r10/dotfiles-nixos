@@ -37,7 +37,7 @@ main = do
     , logHook = myLogHook
     , manageHook = manageDocks
     , modMask = myModMask
-    , terminal = "roxterm"
+    , terminal = "alacritty"
     }
 
 myLogHook :: X ()
