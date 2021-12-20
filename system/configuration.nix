@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./wm/xmonad.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -43,12 +44,12 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    displayManager.lightdm.enable = true;
-    windowManager.i3.enable = true;
-  };
+  #services.xserver = {
+  #  enable = true;
+  #  layout = "us";
+  #  displayManager.lightdm.enable = true;
+  #  windowManager.i3.enable = true;
+  #};
   #services.xserver.windowManager.xmonad.enable = true;
 
 
@@ -104,7 +105,7 @@
   nixpkgs.config.allowUnfree = true;
   virtualisation.virtualbox.host = {
    enable = true;
-   enableExtensionPack = true;
+   #enableExtensionPack = true;
   };
   users.extraGroups.vboxusers.members = [ "f3r10"];
 

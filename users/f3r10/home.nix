@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+
+  #imports = (import ./programs);
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -15,11 +17,21 @@
    userEmail = "frledesma@outlook.com";
   };
 
+  programs.gpg = {
+   enable = true;
+  };
+
+  services.gpg-agent = {
+   enable = true;
+   pinentryFlavor = "curses";
+  };
+
   home.packages = with pkgs; [
    alacritty
    git
    git-crypt
    gnupg
+   pinentry-curses
   ];
 
   xsession = {
