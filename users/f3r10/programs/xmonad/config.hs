@@ -6,7 +6,7 @@ import Data.Map (Map)
 import qualified Data.Map as M
 import Graphics.X11.Xlib
 import System.Exit (ExitCode(ExitSuccess), exitWith)
-import System.Taffybar.Hooks.PagerHints (pagerHints)
+-- import System.Taffybar.Hooks.PagerHints (pagerHints)
 import XMonad
        (ChangeLayout(NextLayout), Dimension, KeyMask, Layout,
         Resize(Expand, Shrink), IncMasterN(IncMasterN), ScreenId,
@@ -30,7 +30,7 @@ import qualified XMonad.StackSet as W
 
 main :: IO ()
 main = do
-  xmonad . ewmh . pagerHints . docks $ def
+  xmonad . ewmh . docks $ def
     { borderWidth = myBorderWidth
     , keys = myKeys
     , layoutHook = myLayout
