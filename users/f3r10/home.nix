@@ -32,6 +32,7 @@
    git-crypt
    gnupg
    pinentry-curses
+   dmenu
   ];
 
   /* xsession = {
