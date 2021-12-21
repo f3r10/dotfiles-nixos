@@ -12,7 +12,7 @@
 
         # Eyecandy 
         nvim-treesitter
-        nvim-treesitter-pairs
+        #nvim-treesitter-pairs it does not exist on nix
         nvim-ts-rainbow
         bufferline-nvim
         galaxyline-nvim
@@ -30,10 +30,10 @@
         friendly-snippets
 
         #others
-        tabout-nvim
+        #tabout-nvim it does not exist on nix
         nvim-dap
-        nvim-metals
-        scala-utils-nvim
+        #nvim-metals
+        #scala-utils-nvim
         onedark-nvim
         vim-abolish
         vim-surround
@@ -42,7 +42,7 @@
         vim-rhubarb
         vim-highlightedyank
         vim-obsession
-        nvim-jvmopts
+        #nvim-jvmopts
         goyo-vim
         nvim-bqf
         nvim-web-devicons
@@ -50,28 +50,28 @@
         vista-vim
         vim-polyglot
         nvim-autopairs
-        stylua-nvim
+        #stylua-nvim
         registers-nvim
         hop-nvim
         lazygit-nvim
-        nvim-lsp-compose
+        #nvim-lsp-compose
         lsp_signature-nvim
         toggleterm-nvim
-        nvim-ts-autotag
+        #nvim-ts-autotag
         auto-session
-        git-utils-nvim
+        #git-utils-nvim
         comment-nvim
         nvim-ts-context-commentstring
         nvim-lsp-ts-utils
         trouble-nvim
         rust-tools-nvim
-        startuptime-vim
+        #startuptime-vim
         todo-comments-nvim
-        nvim-neoclip-lua
-        fm-nvim
+        #nvim-neoclip-lua
+        #fm-nvim
         null-ls-nvim
         vim-bbye
-        impatient-nvim
+        #impatient-nvim
 
         # Telescope
         telescope-nvim
@@ -83,6 +83,7 @@
         indent-blankline-nvim
     ];
     extraConfig = ''
-        luafile ./lua/init.lua
+	set runtimepath^=${./lua}
+        luafile ${./lua}/init.lua
     '';
 }

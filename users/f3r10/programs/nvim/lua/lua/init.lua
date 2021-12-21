@@ -11,7 +11,7 @@ require("setup.bufferline-two")
 require "setup.impatient"
 -- require("options")
 require("f3r10.telescope").setup()
--- require "f3r10.plugins"
+require "f3r10.plugins"
 require("f3r10.galaxyline").setup()
 -- require("f3r10.cmp").setup()
 require("f3r10.lsp").setup()
@@ -27,10 +27,10 @@ require "setup.gitsigns"
 require "setup.nvim-tree"
 require("hop").setup()
 -- require "lsp.efm"
--- require "lsp.null-ls"
+require "lsp.null-ls"
 require "lsp.tailwindcss"
 require "lspicon"
--- require "setup.treesitter"
+require "setup.treesitter"
 
 require "setup.cmp_2"
 require("luasnip/loaders/from_vscode").lazy_load()
@@ -56,8 +56,8 @@ require "setup.rust_tools"
 require("todo-comments").setup {}
 -- NOTE this setup  produce an core dump error
 -- require("neogit").setup {}
--- require("neoclip").setup()
+require("neoclip").setup()
 
---require("fm-nvim").setup {}
+require("fm-nvim").setup {}
 
 require("setup.comment")

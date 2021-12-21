@@ -39,6 +39,10 @@ in
     gnupg
     pinentry-curses
     dmenu
+    ripgrep
+    fd
+    clang
+    #neovim
   ];
 
   xsession = {

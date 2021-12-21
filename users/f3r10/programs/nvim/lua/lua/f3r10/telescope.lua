@@ -120,7 +120,7 @@ M.setup = function()
 
       file_ignore_patterns = { ".git", "target" },
       set_env = { ["COLORTERM"] = "truecolor" },
-      buffer_previewer_maker = new_maker,
+      --[[ buffer_previewer_maker = new_maker, --]]
       -- mappings = {
       --   n = {
       --     i = { ["<c-t>"] = trouble.open_with_trouble },
@@ -129,7 +129,7 @@ M.setup = function()
       -- },
     },
 
-    pickers = {
+    --[[ pickers = {
       buffers = {
         show_all_buffers = true,
         sort_lastused = true,
@@ -141,15 +141,15 @@ M.setup = function()
           },
         },
       },
-    },
-    extensions = {
+    }, --]]
+    --[[ extensions = {
       fzy_native = {
         override_generic_sorter = false,
         override_file_sorter = true,
       },
-    },
+    }, --]]
   }
-  require("telescope").load_extension "fzy_native"
+  --[[ require("telescope").load_extension "fzy_native" --]]
 end
 
 -- local M = {}

@@ -30,7 +30,6 @@
         username = "f3r10";
         homeDirectory = "/home/f3r10";
         stateVersion = "21.11";
-        nixpkgs.overlays = [neovim-nightly-overlay.overlay];
         configuration = {
           imports = [
             ./users/f3r10/home.nix
