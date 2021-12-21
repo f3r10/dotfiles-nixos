@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
+let 
 
-{
+  nvimsetting = import ./programs/nvim/nvim.nix;
+
+in
+  {
 
   #imports = (import ./programs);
   # Let Home Manager install and manage itself.
@@ -11,35 +15,37 @@
   home.username = "f3r10";
   home.homeDirectory = "/home/f3r10";
 
+  programs.neovim = nvimsetting pkgs;
+
   programs.git = {
-   enable = true;
-   userName = "f3r10";
-   userEmail = "frledesma@outlook.com";
+    enable = true;
+    userName = "f3r10";
+    userEmail = "frledesma@outlook.com";
   };
 
   programs.gpg = {
-   enable = true;
+    enable = true;
   };
 
   services.gpg-agent = {
-   enable = true;
-   pinentryFlavor = "curses";
+    enable = true;
+    pinentryFlavor = "curses";
   };
 
   home.packages = with pkgs; [
-   alacritty
-   git
-   git-crypt
-   gnupg
-   pinentry-curses
-   dmenu
+    alacritty
+    git
+    git-crypt
+    gnupg
+    pinentry-curses
+    dmenu
   ];
 
   xsession = {
-   enable = true;
-   windowManager.i3 = rec {
     enable = true;
-   };
+    windowManager.i3 = rec {
+      enable = true;
+    };
   };
 
   # This value determines the Home Manager release that your

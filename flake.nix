@@ -6,9 +6,14 @@
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     # in this way home-manager will have the same package version thant nixpkgs
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, ... }:
   let
     system = "x86_64-linux";
 
@@ -24,7 +29,8 @@
         inherit system pkgs;
         username = "f3r10";
         homeDirectory = "/home/f3r10";
-	stateVersion = "21.11";
+        stateVersion = "21.11";
+        nixpkgs.overlays = [neovim-nightly-overlay.overlay];
         configuration = {
           imports = [
             ./users/f3r10/home.nix
