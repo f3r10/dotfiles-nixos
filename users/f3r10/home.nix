@@ -2,7 +2,7 @@
 
 {
 
-  imports = (import ./programs);
+  #imports = (import ./programs);
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -35,12 +35,12 @@
    dmenu
   ];
 
-  /* xsession = {
+  xsession = {
    enable = true;
    windowManager.i3 = rec {
     enable = true;
    };
-  }; */
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
