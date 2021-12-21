@@ -1,5 +1,6 @@
 #!/bin/sh
 
 pushd ~/.dotfiles
-home-manager switch -f ./users/f3r10/home.nix
+nix build .#homeManagerConfigurations.f3r10.activationPackage
+./result/activate
 popd
