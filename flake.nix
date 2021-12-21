@@ -20,7 +20,7 @@
     lib = nixpkgs.lib;
   in {
     homeManagerConfigurations = {
-      f3r10 = home-manager.lib.homeManagerConfigurations {
+      f3r10 = home-manager.lib.homeManagerConfiguration {
         inherit system pkgs;
         username = "f3r10";
         homeDirectory = "/home/f3r10";
