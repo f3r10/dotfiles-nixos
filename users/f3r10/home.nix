@@ -45,12 +45,12 @@ in
     #neovim
   ];
 
-  xsession = {
+  /* xsession = {
     enable = true;
     windowManager.i3 = rec {
       enable = true;
     };
-  };
+  }; */
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

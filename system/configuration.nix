@@ -15,22 +15,22 @@
   services = {
     xserver = {
       enable = true;
-      layout = "pl";
-      xkbVariant = "colemak";
-      xkbOptions = "ctrl:nocaps";
-      libinput = {
+      layout = "us";
+      /* xkbVariant = "colemak";
+      xkbOptions = "ctrl:nocaps"; */
+      /* libinput = {
         enable = true;
         touchpad.disableWhileTyping = true;
         touchpad.middleEmulation = true;
         touchpad.naturalScrolling = true;
         mouse.disableWhileTyping = true;
         mouse.naturalScrolling = true;
-      };
+      }; */
       displayManager = {
         defaultSession = "none+myxmonad";
-        sessionCommands = ''
+        /* sessionCommands = ''
           bluetoothctl power on
-        '';
+        ''; */
       };
       windowManager = {
         session = [{
@@ -42,7 +42,7 @@
         }];
       };
     };
-    tlp.enable = true;
+    # tlp.enable = true;
   };
 
   # Make ready for nix flakes
