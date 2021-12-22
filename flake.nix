@@ -29,6 +29,7 @@
       config = { allowUnfree = true; };
       overlays = [
         # nur.overlay
+        neovim-nightly-overlay.overlay
         xmonad.overlay
         xmonad-contrib.overlay
         (import ./overlays)
@@ -37,7 +38,7 @@
 
     lib = nixpkgs.lib;
   in {
-    homeManagerConfigurations = {
+    /* homeManagerConfigurations = {
       f3r10 = home-manager.lib.homeManagerConfiguration {
         inherit system pkgs;
         username = "f3r10";
@@ -49,19 +50,19 @@
           ];
         };
       };
-    };
+    }; */
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         inherit pkgs system;
 
         modules = [
           ./system/configuration.nix
-          /* home-manager.nixosModules.home-manager
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.f3r10 = import ./users/f3r10/home.nix;
-          } */
+          }
         ];
       };
     };
