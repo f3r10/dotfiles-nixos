@@ -8,8 +8,42 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./wm/xmonad.nix
+      /* ../modules/window-managers/xmonad.nix */
     ];
+
+
+  services = {
+    xserver = {
+      enable = true;
+      layout = "pl";
+      xkbVariant = "colemak";
+      xkbOptions = "ctrl:nocaps";
+      libinput = {
+        enable = true;
+        touchpad.disableWhileTyping = true;
+        touchpad.middleEmulation = true;
+        touchpad.naturalScrolling = true;
+        mouse.disableWhileTyping = true;
+        mouse.naturalScrolling = true;
+      };
+      displayManager = {
+        defaultSession = "none+myxmonad";
+        sessionCommands = ''
+          bluetoothctl power on
+        '';
+      };
+      windowManager = {
+        session = [{
+          name = "myxmonad";
+          start = ''
+            /usr/bin/env f3r10-xmonad &
+            waitPID=$!
+          '';
+        }];
+      };
+    };
+    tlp.enable = true;
+  };
 
   # Make ready for nix flakes
   nix.package = pkgs.nixFlakes;
@@ -50,12 +84,12 @@
   # };
 
   # Enable the X11 windowing system.
-  #services.xserver = {
-  #  enable = true;
-  #  layout = "us";
-  #  displayManager.lightdm.enable = true;
-  #  windowManager.i3.enable = true;
-  #};
+  /* services.xserver = {
+    enable = true;
+    layout = "us";
+    displayManager.lightdm.enable = true;
+    windowManager.i3.enable = true;
+  }; */
   #services.xserver.windowManager.xmonad.enable = true;
 
 
@@ -88,6 +122,13 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     firefox
+    xdotool
+    xwallpaper
+    xsecurelock
+    xorg.xkill
+    haskellPackages.xmonad
+    # haskellPackages.f3r10-xmobar
+    haskellPackages.f3r10-xmonad
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

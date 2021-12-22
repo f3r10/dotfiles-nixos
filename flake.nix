@@ -7,19 +7,32 @@
     # in this way home-manager will have the same package version thant nixpkgs
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nur.url = "github:nix-community/NUR";
+
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xmonad.url = "github:xmonad/xmonad";
+    xmonad-contrib = {
+      url = "github:xmonad/xmonad-contrib";
+      inputs.xmonad.follows = "xmonad";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, ... }:
+  outputs = { nixpkgs, home-manager, nur, neovim-nightly-overlay, xmonad, xmonad-contrib,  ... }:
   let
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
       inherit system;
       config = { allowUnfree = true; };
+      overlays = [
+        # nur.overlay
+        xmonad.overlay
+        xmonad-contrib.overlay
+        (import ./overlays)
+      ];
     };
 
     lib = nixpkgs.lib;
@@ -39,10 +52,16 @@
     };
     nixosConfigurations = {
       nixos = lib.nixosSystem {
-        inherit system;
+        inherit pkgs system;
 
         modules = [
           ./system/configuration.nix
+          /* home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.f3r10 = import ./users/f3r10/home.nix;
+          } */
         ];
       };
     };
