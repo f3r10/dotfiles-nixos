@@ -18,9 +18,10 @@
       url = "github:xmonad/xmonad-contrib";
       inputs.xmonad.follows = "xmonad";
     };
+    taffybar.url = "github:taffybar/taffybar";
   };
 
-  outputs = { nixpkgs, home-manager, nur, neovim-nightly-overlay, xmonad, xmonad-contrib,  ... }:
+  outputs = { nixpkgs, home-manager, nur, neovim-nightly-overlay, xmonad, xmonad-contrib, taffybar,  ... }:
   let
     system = "x86_64-linux";
 
@@ -29,10 +30,12 @@
       config = { allowUnfree = true; };
       overlays = [
         # nur.overlay
+        taffybar.overlay
         neovim-nightly-overlay.overlay
         xmonad.overlay
         xmonad-contrib.overlay
         (import ./overlays)
+        (import ./overlays/taffybar.nix)
       ];
     };
 

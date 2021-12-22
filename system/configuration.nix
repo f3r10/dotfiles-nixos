@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -11,9 +11,14 @@
       /* ../modules/window-managers/xmonad.nix */
     ];
 
-
   services = {
     xserver = {
+      gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+
+      displayManager.sessionCommands = ''
+        # 1st-Step Taffybar workaround
+        systemctl --user import-environment GDK_PIXBUF_MODULE_FILE DBUS_SESSION_BUS_ADDRESS PATH
+      '';
       enable = true;
       layout = "us";
       /* xkbVariant = "colemak";
@@ -123,12 +128,14 @@
     wget
     firefox
     xdotool
+    dconf
     xwallpaper
     xsecurelock
     xorg.xkill
     haskellPackages.xmonad
     # haskellPackages.f3r10-xmobar
     haskellPackages.f3r10-xmonad
+    haskellPackages.f3r10-taffybar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

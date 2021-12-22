@@ -69,6 +69,8 @@ import XMonad.Hooks.ManageHelpers
     isDialog,
     (/=?),
   )
+
+import XMonad.Hooks.TaffybarPagerHints
 import XMonad.Hooks.RefocusLast (refocusLastLogHook)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.StatusBar (StatusBarConfig, defToggleStrutsKey, statusBarProp, withEasySB, withSB)
@@ -196,7 +198,7 @@ statusBar = statusBarProp "/home/f3r10/.cabal/bin/xmobar ~/.config/xmobar/xmobar
 
 main =
   xmonad
-    -- . ewmhFullscreen
+    . pagerHints
     . ewmh
     . withSB statusBar
     . docks
