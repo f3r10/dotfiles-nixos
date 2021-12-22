@@ -42,6 +42,7 @@ in
     ripgrep
     fd
     clang
+    rnix-lsp
     #neovim
   ];
 

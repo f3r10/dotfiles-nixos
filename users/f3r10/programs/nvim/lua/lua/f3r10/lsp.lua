@@ -103,6 +103,7 @@ M.setup = function()
   lsp_config.elmls.setup(require("languages.elm").lsp)
   lsp_config.cssls.setup(require("languages.css").lsp)
   lsp_config.hls.setup(require("languages.haskell").lsp)
+  lsp_config.rnix.setup{}
   -- lsp_config.rust_analyzer.setup(require("languages.rust").lsp)
 
   -- Uncomment for trace logs from neovim
