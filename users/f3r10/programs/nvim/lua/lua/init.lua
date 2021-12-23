@@ -1,12 +1,24 @@
 --vim.cmd [[packadd packer.nvim]]
 -- require("onedark").setup()
-require("onedark").setup {
-  functionStyle = "italic",
-  sidebars = { "qf", "vista_kind", "terminal", "packer" },
-  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  colors = { hint = "orange", error = "#ff0000" },
-  commentStyle = "italic",
-}
+local onedarkpro = require("onedarkpro")
+onedarkpro.setup({
+    theme = 'onedark'
+    styles = {
+      strings = "NONE", -- Style that is applied to strings
+      comments = "italic", -- Style that is applied to comments
+      keywords = "NONE", -- Style that is applied to keywords
+      functions = "italic", -- Style that is applied to functions
+      variables = "NONE", -- Style that is applied to variables
+    }
+  })
+onedarkpro.load()
+-- require("onedark").setup {
+--   functionStyle = "italic",
+--   sidebars = { "qf", "vista_kind", "terminal", "packer" },
+--   -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+--   colors = { hint = "orange", error = "#ff0000" },
+--   commentStyle = "italic",
+-- }
 require("setup.bufferline-two")
 require "setup.impatient"
 -- require("options")

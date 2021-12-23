@@ -28,7 +28,6 @@ in
   };
 
   home.packages = with pkgs; [
-    alacritty
     git
     git-crypt
     gnupg

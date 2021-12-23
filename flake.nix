@@ -41,25 +41,13 @@
 
     lib = nixpkgs.lib;
   in {
-    /* homeManagerConfigurations = {
-      f3r10 = home-manager.lib.homeManagerConfiguration {
-        inherit system pkgs;
-        username = "f3r10";
-        homeDirectory = "/home/f3r10";
-        stateVersion = "21.11";
-        configuration = {
-          imports = [
-            ./users/f3r10/home.nix
-          ];
-        };
-      };
-    }; */
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         inherit pkgs system;
 
         modules = [
           ./system/configuration.nix
+          ./modules/alacritty
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

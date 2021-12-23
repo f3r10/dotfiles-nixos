@@ -43,7 +43,7 @@ cmd [[autocmd TermOpen * startinsert]]
 --cmd [[autocmd ColorScheme * highlight link LspCodeLens Conceal]]
 --cmd [[augroup END]]
 
-cmd "colorscheme onedark"
+-- cmd "colorscheme onedark"
 
 -- cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 
