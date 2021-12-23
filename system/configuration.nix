@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       /* ../modules/window-managers/xmonad.nix */
     ];
@@ -17,7 +18,7 @@
       enable = true;
       layout = "us";
       /* xkbVariant = "colemak";
-      xkbOptions = "ctrl:nocaps"; */
+        xkbOptions = "ctrl:nocaps"; */
       /* libinput = {
         enable = true;
         touchpad.disableWhileTyping = true;
@@ -25,12 +26,12 @@
         touchpad.naturalScrolling = true;
         mouse.disableWhileTyping = true;
         mouse.naturalScrolling = true;
-      }; */
+        }; */
       displayManager = {
         defaultSession = "none+myxmonad";
         /* sessionCommands = ''
           bluetoothctl power on
-        ''; */
+          ''; */
       };
       windowManager = {
         session = [{
@@ -45,12 +46,6 @@
     # tlp.enable = true;
   };
 
-  # Make ready for nix flakes
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
@@ -64,7 +59,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/Guayaquil";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -83,17 +78,30 @@
   #   keyMap = "us";
   # };
 
+  fonts = {
+    fontconfig = {
+      enable = true;
+    };
+    fonts = with pkgs; [
+      ubuntu_font_family
+      mononoki
+      font-awesome_5
+      source-code-pro
+      nerdfonts
+    ];
+  };
+
   # Enable the X11 windowing system.
   /* services.xserver = {
     enable = true;
     layout = "us";
     displayManager.lightdm.enable = true;
     windowManager.i3.enable = true;
-  }; */
+    }; */
   #services.xserver.windowManager.xmonad.enable = true;
 
 
-  
+
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -134,10 +142,11 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "curses";
+  };
 
   # List services that you want to enable:
 
@@ -151,10 +160,10 @@
   # networking.firewall.enable = false;
   nixpkgs.config.allowUnfree = true;
   virtualisation.virtualbox.host = {
-   enable = true;
-   #enableExtensionPack = true;
+    enable = true;
+    #enableExtensionPack = true;
   };
-  users.extraGroups.vboxusers.members = [ "f3r10"];
+  users.extraGroups.vboxusers.members = [ "f3r10" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -162,6 +171,34 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  nix = {
+    autoOptimiseStore = true;
+    gc = {
+      automatic = true;
+      dates = "monthly";
+      options = "--delete-older-than 8d";
+    };
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+    trustedUsers = [ "alternateved" "root" ];
+    binaryCaches = [
+      "https://nix-community.cachix.org/"
+      "https://hydra.iohk.io"
+      "https://iohk.cachix.org"
+    ];
+    binaryCachePublicKeys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+    ];
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+  documentation.man.generateCaches = true;
   system.stateVersion = "21.11"; # Did you read the comment?
 
 }

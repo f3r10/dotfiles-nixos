@@ -27,11 +27,6 @@ in
     enable = true;
   };
 
-  services.gpg-agent = {
-    enable = true;
-    pinentryFlavor = "curses";
-  };
-
   home.packages = with pkgs; [
     alacritty
     git
