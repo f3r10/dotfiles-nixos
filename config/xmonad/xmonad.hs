@@ -187,7 +187,7 @@ myXmobarPP =
     }
 
 statusBar :: StatusBarConfig
-statusBar = statusBarProp "/home/f3r10/.cabal/bin/xmobar ~/.config/xmobar/xmobarrc2" $ pure pp
+statusBar = statusBarProp "/run/current-system/sw/bin/xmobar ~/.dotfiles/config/xmobar/xmobarrc2" $ pure pp
   where
     pp =
       filterOutWsPP

@@ -18,9 +18,11 @@
       url = "github:xmonad/xmonad-contrib";
       inputs.xmonad.follows = "xmonad";
     };
+    xmobar.url = "github:alternateved/xmobar";
   };
 
-  outputs = { nixpkgs, home-manager, nur, neovim-nightly-overlay, xmonad, xmonad-contrib,  ... }:
+  outputs = { nixpkgs, home-manager, nur, neovim-nightly-overlay, xmonad, xmonad-contrib,
+  xmobar,  ... }:
   let
     system = "x86_64-linux";
 
@@ -32,6 +34,7 @@
         neovim-nightly-overlay.overlay
         xmonad.overlay
         xmonad-contrib.overlay
+        xmobar.overlay
         (import ./overlays)
       ];
     };

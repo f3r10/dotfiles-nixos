@@ -127,7 +127,7 @@
     xsecurelock
     xorg.xkill
     haskellPackages.xmonad
-    # haskellPackages.f3r10-xmobar
+    haskellPackages.xmobar
     haskellPackages.f3r10-xmonad
   ];
 
