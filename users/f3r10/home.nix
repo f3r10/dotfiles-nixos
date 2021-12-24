@@ -17,6 +17,8 @@ in
 
   programs.neovim = nvimsetting pkgs;
 
+  xdg.enable = true;
+
   programs.git = {
     enable = true;
     userName = "f3r10";
@@ -37,6 +39,7 @@ in
     fd
     clang
     rnix-lsp
+    killall
     #neovim
   ];
 

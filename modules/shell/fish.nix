@@ -1,10 +1,15 @@
 # https://github.com/Icy-Thought/Snowflake/blob/6d2e482eb1b509611ad0577eddf75784b5c4b7ab/modules/shell/fish.nix
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+with lib;
+let
+  ts = pkgs.writeShellScriptBin "ts" (builtins.readFile ./tmux-sessionizer);
+in
 {
   imports =
     [
       ./starship.nix
       ./tmux.nix
+      ./fzf.nix
     ];
   users.defaultUserShell = pkgs.fish;
   home-manager.users.f3r10.programs.fish = {
@@ -24,7 +29,14 @@
             exec tmux
         end
       # Sources
-              starship init fish | source
+      starship init fish | source
+
+      function tmux-sessionizer-fn
+        commandline -i (ts)
+      end
+
+      bind -M insert \cf tmux-sessionizer-fn
+
     '';
     shellAbbrs = {
       ls = "exa -al --color=always --group-directories-first";
@@ -37,5 +49,6 @@
   home-manager.users.f3r10.home.packages = with pkgs; [
     exa
     bat
+    ts
   ];
 }

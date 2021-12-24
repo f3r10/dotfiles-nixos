@@ -55,6 +55,14 @@
             home-manager.useUserPackages = true;
             home-manager.users.f3r10 = import ./users/f3r10/home.nix;
           }
+          /* {
+            modules = {
+              terminal = {
+                enable = true;
+                mainWorkspaceDir = "$HOME/f3r10";
+              };
+            };
+          } */
         ];
       };
     };
