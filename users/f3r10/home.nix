@@ -40,6 +40,7 @@ in
     clang
     rnix-lsp
     killall
+    xclip
     #neovim
   ];
 

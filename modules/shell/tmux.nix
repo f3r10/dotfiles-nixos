@@ -28,6 +28,9 @@ in
     keyMode = "vi";
     shortcut = "a";
     extraConfig = ''
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi y send-keys -X copy-pipe "xclip -sel clip -i"
+      bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
       set -g mouse on
       bind v split-window -h -c '#{pane_current_path}'
       bind s split-window -v -c '#{pane_current_path}'
