@@ -6,5 +6,13 @@
 [ ] xmonad scripts
 [x] tmux
   [ ] styles
-[ ] clipboard for tmux and neovim
-[ ] migrate from enpass to pass ans dmenu
+[x] clipboard for tmux and neovim
+[x] migrate from enpass to pass and dmenu
+  At the end because I also needed to mange my password from my mobile I decided
+  to choose keepassxs as my default password manager. It does not have a nice
+  integration like pass but I can create a scratchpad in my xmonad
+  configuration.
+
+[ ] notes -> Doom emacs
+
+

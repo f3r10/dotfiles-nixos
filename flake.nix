@@ -46,6 +46,7 @@
         inherit pkgs system;
 
         modules = [
+          ./modules/code.nix
           ./system/configuration.nix
           ./modules/alacritty
           ./modules/shell/fish.nix
